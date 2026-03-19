@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collections — Jamyang Jewels</title>
+  <meta name="description" content="Explore handcrafted fine jewelry pieces by Jamyang Jewels — raw diamonds, cut diamonds, and fancy colored stones, each made with intention." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,5 95,35 95,65 50,95 5,65 5,35' fill='none' stroke='%23C9A96E' stroke-width='4'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav__logo" aria-label="Jamyang Jewels home">
+      <span class="nav__logo-name">Jamyang Jewels</span>
+      <span class="nav__logo-sub">Fine Jewelry · Singapore</span>
+    </a>
+    <ul class="nav__links" role="list">
+      <li><a href="collections.html" class="nav__link active">Collections</a></li>
+      <li><a href="events.html" class="nav__link">Events</a></li>
+      <li><a href="about.html" class="nav__link">About</a></li>
+      <li><a href="contact.html" class="nav__link">Contact</a></li>
+    </ul>
+    <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav__mobile-menu" role="dialog" aria-label="Mobile navigation">
+    <a href="collections.html" class="nav__mobile-link">Collections</a>
+    <a href="events.html" class="nav__mobile-link">Events</a>
+    <a href="about.html" class="nav__mobile-link">About</a>
+    <a href="contact.html" class="nav__mobile-link">Contact</a>
+  </div>
+
+  <main>
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="container--narrow" style="text-align:center;">
+        <div class="ornament ornament--center" data-reveal="fade">
+          <div class="ornament__line"></div>
+          <span class="ornament__gem">◆</span>
+          <div class="ornament__line ornament__line--right"></div>
+        </div>
+        <h1 class="page-hero__title" data-reveal data-delay="2">Collections</h1>
+        <p class="page-hero__subtitle" data-reveal data-delay="3">
+          Each piece is an intention. Each stone, a teacher.
+        </p>
+      </div>
+    </section>
+
+    <!-- COLLECTIONS -->
+    <section class="section section--dark">
+      <div class="container">
+
+        <!-- Filter tabs -->
+        <div class="collection-filters" data-reveal>
+          <button class="filter-btn active" data-filter="all">All Pieces</button>
+          <button class="filter-btn" data-filter="raw-diamond">Raw Diamond</button>
+          <button class="filter-btn" data-filter="cut-diamond">Cut Diamond</button>
+          <button class="filter-btn" data-filter="colored">Fancy Colored Stones</button>
+        </div>
+
+        <!-- Collection grid -->
+        <div class="collection-grid">
+
+          <!-- 1 -->
+          <div class="collection-item" data-category="raw-diamond" data-reveal data-delay="1">
+            <div class="collection-item__img">
+              <div class="gem-bg gem-bg--raw collection-item__gem">
+                <div class="gem-bg__facet" aria-hidden="true">
+                  <svg viewBox="0 0 80 80" fill="none" style="color:var(--gold)"><polygon points="40,4 76,28 76,52 40,76 4,52 4,28" stroke="currentColor" stroke-width="1"/><line x1="4" y1="28" x2="76" y2="52" stroke="currentColor" stroke-width="0.5" opacity="0.5"/><line x1="4" y1="52" x2="76" y2="28" stroke="currentColor" stroke-width="0.5" opacity="0.5"/><line x1="40" y1="4" x2="40" y2="76" stroke="currentColor" stroke-width="0.5" opacity="0.5"/></svg>
+                </div>
+              </div>
+            </div>
+            <span class="collection-item__category">Raw Diamond</span>
+            <h3 class="collection-item__title">Origin Ring</h3>
+            <p class="collection-item__intention"><em>"I return to what is true"</em></p>
+          </div>
+
+          <!-- 2 -->
+          <div class="collection-item" data-category="cut-diamond" data-reveal data-delay="2">
+            <div class="collection-item__img">
+              <div class="gem-bg gem-bg--diamond collection-item__gem">
+                <div class="gem-bg__facet" aria-hidden="true">
+                  <svg viewBox="0 0 80 80" fill="none" style="color:var(--gold)"><polygon points="40,8 72,32 72,48 40,72 8,48 8,32" stroke="currentColor" stroke-width="0.8"/><polygon points="40,18 62,34 62,46 40,62 18,46 18,34" stroke="currentColor" stroke-width="0.5" opacity="0.5"/></svg>
+                </div>
+              </div>
+            </div>
+            <span class="collection-item__category">Cut Diamond</span>
+            <h3 class="collection-item__title">Clarity Pendant</h3>
+            <p class="collection-item__intention"><em>"My mind is still water"</em></p>
+          </div>
+
+          <!-- 3 -->
+          <div class="collection-item" data-category="colored" data-reveal data-delay="3">
+            <div class="collection-item__img">
+              <div class="gem-bg gem-bg--sapphire collection-item__gem">
+                <div class="gem-bg__facet" aria-hidden="true">
+                  <svg viewBox="0 0 80 80" fill="none" style="color:var(--gold)"><circle cx="40" cy="40" r="32" stroke="currentColor" stroke-width="0.8"/><circle cx="40" cy="40" r="20" stroke="currentColor" stroke-width="0.5" opacity="0.5"/></svg>
+                </div>
+              </div>
+            </div>
+            <span class="collection-item__category">Sapphire</span>
+            <h3 class="collection-item__title">Stillness Bracelet</h3>
+            <p class="collection-item__intention"><em>"I act from a quiet centre"</em></p>
+          </div>
+
+          <!-- 4 -->
+          <div class="collection-item" data-category="colored" data-reveal data-delay="1">
+            <div class="collection-item__img">
+              <div class="gem-bg gem-bg--emerald collection-item__gem">
+                <div class="gem-bg__facet" aria-hidden="true">
+                  <svg viewBox="0 0 80 80" fill="none" style="color:var(--gold)"><rect x="12" y="20" width="56" height="40" stroke="currentColor" stroke-width="0.8"/><rect x="20" y="28" width="40" height="24" stroke="currentColor" stroke-width="0.5" opacity="0.5"/></svg>
+                </div>
+              </div>
+            </div>
+            <span class="collection-item__category">Emerald</span>
+            <h3 class="collection-item__title">Compassion Ring</h3>
+            <p class="collection-item__intention"><em>"I open my heart without fear"</em></p>
+          </div>
+
+          <!-- 5 -->
+          <div class="collection-item" data-category="colored" data-reveal data-delay="2">
+            <div class="collection-item__img">
+              <div class="gem-bg gem-bg--blush collection-item__gem">
+                <div class="gem-bg__facet" aria-hidden="true">
+                  <svg viewBox="0 0 80 80" fill="none" style="color:var(--gold)"><polygon points="40,5 75,27 75,53 40,75 5,53 5,27" stroke="currentColor" stroke-width="0.8"/></svg>
+                </div>
+              </div>
+            </div>
+            <span class="collection-item__category">Ruby</span>
+            <h3 class="collection-item__title">Kindness Earrings</h3>
+            <p class="collection-item__intention"><em>"Warmth is my practice"</em></p>
+          </div>
+
+          <!-- 6 -->
+          <div class="collection-item" data-category="raw-diamond" data-reveal data-delay="3">
+            <div class="collection-item__img">
+              <div class="gem-bg gem-bg--raw collection-item__gem" style="background-color:#0e0b06;">
+                <div class="gem-bg__facet" aria-hidden="true">
+                  <svg viewBox="0 0 80 80" fill="none" style="color:var(--gold)"><polygon points="40,10 70,30 70,50 40,70 10,50 10,30" stroke="currentColor" stroke-width="0.8"/><line x1="10" y1="30" x2="40" y2="70" stroke="currentColor" stroke-width="0.4" opacity="0.4"/><line x1="70" y1="30" x2="40" y2="70" stroke="currentColor" stroke-width="0.4" opacity="0.4"/><line x1="10" y1="50" x2="70" y2="30" stroke="currentColor" stroke-width="0.4" opacity="0.4"/></svg>
+                </div>
+              </div>
+            </div>
+            <span class="collection-item__category">Raw Diamond</span>
+            <h3 class="collection-item__title">Impermanence Pendant</h3>
+            <p class="collection-item__intention"><em>"I hold lightly what cannot last"</em></p>
+          </div>
+
+          <!-- 7 -->
+          <div class="collection-item" data-category="cut-diamond" data-reveal data-delay="1">
+            <div class="collection-item__img">
+              <div class="gem-bg gem-bg--diamond collection-item__gem">
+                <div class="gem-bg__facet" aria-hidden="true">
+                  <svg viewBox="0 0 80 80" fill="none" style="color:var(--gold)"><polygon points="40,5 75,22 75,58 40,75 5,58 5,22" stroke="currentColor" stroke-width="0.8"/><polygon points="40,15 65,28 65,52 40,65 15,52 15,28" stroke="currentColor" stroke-width="0.5" opacity="0.4"/><line x1="5" y1="22" x2="75" y2="58" stroke="currentColor" stroke-width="0.4" opacity="0.3"/></svg>
+                </div>
+              </div>
+            </div>
+            <span class="collection-item__category">Cut Diamond</span>
+            <h3 class="collection-item__title">Wisdom Bangle</h3>
+            <p class="collection-item__intention"><em>"Insight is my inheritance"</em></p>
+          </div>
+
+          <!-- 8 -->
+          <div class="collection-item" data-category="colored" data-reveal data-delay="2">
+            <div class="collection-item__img">
+              <div class="gem-bg gem-bg--emerald collection-item__gem" style="background-color:#050e08;">
+                <div class="gem-bg__facet" aria-hidden="true">
+                  <svg viewBox="0 0 80 80" fill="none" style="color:var(--gold)"><circle cx="40" cy="40" r="30" stroke="currentColor" stroke-width="0.8"/><circle cx="40" cy="40" r="18" stroke="currentColor" stroke-width="0.5" opacity="0.5"/><circle cx="40" cy="40" r="6" fill="currentColor" opacity="0.15"/></svg>
+                </div>
+              </div>
+            </div>
+            <span class="collection-item__category">Tsavorite Garnet</span>
+            <h3 class="collection-item__title">Renewal Stacking Ring</h3>
+            <p class="collection-item__intention"><em>"Growth is my nature"</em></p>
+          </div>
+
+          <!-- 9 -->
+          <div class="collection-item" data-category="raw-diamond" data-reveal data-delay="3">
+            <div class="collection-item__img">
+              <div class="gem-bg gem-bg--raw collection-item__gem">
+                <div class="gem-bg__facet" aria-hidden="true">
+                  <svg viewBox="0 0 80 80" fill="none" style="color:var(--gold)"><polygon points="40,4 60,20 76,40 60,60 40,76 20,60 4,40 20,20" stroke="currentColor" stroke-width="0.8"/><polygon points="40,14 56,26 68,40 56,54 40,66 24,54 12,40 24,26" stroke="currentColor" stroke-width="0.5" opacity="0.4"/></svg>
+                </div>
+              </div>
+            </div>
+            <span class="collection-item__category">Raw Diamond</span>
+            <h3 class="collection-item__title">Presence Brooch</h3>
+            <p class="collection-item__intention"><em>"I am here. Fully, openly."</em></p>
+          </div>
+
+        </div><!-- end .collection-grid -->
+
+        <!-- Commission note -->
+        <div style="text-align:center; margin-top: 3rem; padding: 3rem; border: 1px solid var(--obsidian-border);" data-reveal>
+          <div class="ornament ornament--center" style="margin-bottom:1.5rem;">
+            <div class="ornament__line"></div>
+            <span class="ornament__gem">◆</span>
+            <div class="ornament__line ornament__line--right"></div>
+          </div>
+          <span class="section-label">Bespoke Commissions</span>
+          <p class="serif-quote" style="font-size: 1.15rem; color: var(--text-muted); max-width: 560px; margin: 1rem auto 2rem;">
+            Don't see a piece that carries your specific intention? We create bespoke commissions — a conversation, a design, a piece that is uniquely yours.
+          </p>
+          <a href="https://wa.me/6500000000" class="btn btn--gold" target="_blank" rel="noopener">
+            Begin a Commission <span class="btn__arrow">→</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <p class="footer__brand-name">Jamyang Jewels</p>
+          <p class="footer__brand-sub">Pte Ltd · Singapore</p>
+          <p class="footer__tagline">Fine jewelry for those walking a path of wisdom and kindness.</p>
+        </div>
+        <div>
+          <p class="footer__col-title">Navigate</p>
+          <nav class="footer__nav">
+            <a href="index.html" class="footer__nav-link">Home</a>
+            <a href="collections.html" class="footer__nav-link">Collections</a>
+            <a href="events.html" class="footer__nav-link">Events &amp; Workshops</a>
+            <a href="about.html" class="footer__nav-link">About Us</a>
+            <a href="contact.html" class="footer__nav-link">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <p class="footer__col-title">Contact</p>
+          <div class="footer__contact-item">
+            <span class="footer__contact-label">WhatsApp</span>
+            <a href="https://wa.me/6500000000" class="footer__contact-value" target="_blank" rel="noopener">+65 0000 0000</a>
+          </div>
+          <div class="footer__contact-item">
+            <span class="footer__contact-label">Email</span>
+            <a href="mailto:hello@jamyangjewel.com" class="footer__contact-value">hello@jamyangjewel.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">© <span class="js-year">2026</span> Jamyang Jewels Pte Ltd. All rights reserved.</p>
+        <div class="footer__socials">
+          <a href="#" class="footer__social">Instagram</a>
+          <a href="#" class="footer__social">Facebook</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
