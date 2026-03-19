@@ -8,23 +8,20 @@ on:
 
 jobs:
   deploy:
-    name: Deploy via FTP
+    name: Deploy via SFTP
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy to DreamHost via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Deploy to DreamHost via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
-          # Excludes — don't upload dev/config files
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            README.md
+          local_path: "./*"
+          remote_path: "/home/ssanusi/jamyangjewels.com"
+          sftp_only: true
+          args: "-o ConnectTimeout=5"
