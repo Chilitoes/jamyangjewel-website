@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload Images — Jamyang Jewels</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #FAF8F5;
+      color: #2C2416;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1.5rem;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .header h1 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #C9A96E;
+      margin-bottom: 0.4rem;
+    }
+    .header p { font-size: 0.9rem; color: #7a6a50; }
+
+    .card {
+      background: #fff;
+      border: 1px solid #E8DFC8;
+      border-radius: 12px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 560px;
+      margin-bottom: 1.5rem;
+    }
+    .card h2 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #9a8660;
+      margin-bottom: 1rem;
+    }
+
+    /* Token input */
+    .token-row { display: flex; gap: 0.5rem; }
+    .token-row input {
+      flex: 1;
+      padding: 0.6rem 0.9rem;
+      border: 1px solid #D4C9A8;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      background: #FAF8F5;
+      color: #2C2416;
+    }
+    .token-row input:focus { outline: 2px solid #C9A96E; border-color: transparent; }
+    .btn-save {
+      padding: 0.6rem 1.1rem;
+      background: #C9A96E;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-save:hover { background: #B8965C; }
+    .token-note {
+      margin-top: 0.6rem;
+      font-size: 0.78rem;
+      color: #9a8660;
+    }
+    .token-note a { color: #C9A96E; }
+    .token-saved {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: #5a9e6f;
+      font-weight: 500;
+    }
+
+    /* Drop zone */
+    .drop-zone {
+      border: 2px dashed #D4C9A8;
+      border-radius: 10px;
+      padding: 3rem 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .drop-zone:hover, .drop-zone.dragover {
+      border-color: #C9A96E;
+      background: #FBF7EE;
+    }
+    .drop-zone input[type="file"] { display: none; }
+    .drop-icon { font-size: 2.2rem; margin-bottom: 0.7rem; }
+    .drop-zone h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.3rem; }
+    .drop-zone p { font-size: 0.82rem; color: #9a8660; }
+
+    /* Upload list */
+    .upload-list { margin-top: 1.2rem; display: flex; flex-direction: column; gap: 0.7rem; }
+    .upload-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.7rem 0.9rem;
+      background: #FAF8F5;
+      border-radius: 8px;
+      border: 1px solid #E8DFC8;
+    }
+    .upload-thumb {
+      width: 48px; height: 48px;
+      object-fit: cover;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .upload-info { flex: 1; min-width: 0; }
+    .upload-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .upload-size { font-size: 0.75rem; color: #9a8660; }
+    .upload-status {
+      font-size: 0.78rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .upload-status.pending { color: #9a8660; }
+    .upload-status.uploading { color: #C9A96E; }
+    .upload-status.done { color: #5a9e6f; }
+    .upload-status.error { color: #c0392b; }
+
+    .btn-upload-all {
+      width: 100%;
+      margin-top: 1rem;
+      padding: 0.85rem;
+      background: #C9A96E;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+    }
+    .btn-upload-all:hover { background: #B8965C; }
+    .btn-upload-all:disabled { background: #D4C9A8; cursor: not-allowed; }
+
+    /* Results */
+    .results { display: flex; flex-direction: column; gap: 0.6rem; }
+    .result-item {
+      padding: 0.7rem 0.9rem;
+      background: #F0FAF3;
+      border: 1px solid #B8DECA;
+      border-radius: 8px;
+    }
+    .result-label { font-size: 0.75rem; color: #5a9e6f; font-weight: 600; margin-bottom: 0.3rem; }
+    .result-code {
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      color: #2C2416;
+      background: #fff;
+      border: 1px solid #D4C9A8;
+      border-radius: 4px;
+      padding: 0.4rem 0.6rem;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      word-break: break-all;
+    }
+    .result-code:hover { background: #FBF7EE; }
+    .copy-hint { font-size: 0.72rem; color: #9a8660; margin-top: 0.3rem; }
+
+    .no-results { font-size: 0.85rem; color: #9a8660; text-align: center; padding: 1rem 0; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Jamyang Jewels · Image Uploader</h1>
+    <p>Upload images directly to your website — no FTP or Git knowledge needed</p>
+  </div>
+
+  <!-- Step 1: Token -->
+  <div class="card">
+    <h2>Step 1 — GitHub Token</h2>
+    <div class="token-row">
+      <input type="password" id="tokenInput" placeholder="Paste your GitHub token here" />
+      <button class="btn-save" onclick="saveToken()">Save</button>
+    </div>
+    <p class="token-note">
+      Need a token? <a href="https://github.com/settings/tokens/new?scopes=repo&description=JamyangJewels+Uploader" target="_blank">Create one here</a> — check the <strong>repo</strong> scope, then copy and paste it above.
+    </p>
+    <span id="tokenStatus" class="token-saved" style="display:none">✓ Token saved</span>
+  </div>
+
+  <!-- Step 2: Upload -->
+  <div class="card">
+    <h2>Step 2 — Choose Images</h2>
+    <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+      <input type="file" id="fileInput" accept="image/*" multiple onchange="handleFiles(this.files)" />
+      <div class="drop-icon">🖼️</div>
+      <h3>Drop images here or click to browse</h3>
+      <p>JPG, PNG, WEBP — any size</p>
+    </div>
+
+    <div class="upload-list" id="uploadList"></div>
+
+    <button class="btn-upload-all" id="uploadBtn" onclick="uploadAll()" disabled>
+      Upload to Website
+    </button>
+  </div>
+
+  <!-- Step 3: Results -->
+  <div class="card">
+    <h2>Step 3 — Copy the Image Path</h2>
+    <div id="results">
+      <p class="no-results">Uploaded images will appear here with their HTML code snippet ready to copy.</p>
+    </div>
+  </div>
+
+<script>
+  const REPO = 'Chilitoes/jamyangjewel-website';
+  const BRANCH = 'main';
+  let files = [];
+
+  // Token
+  function saveToken() {
+    const val = document.getElementById('tokenInput').value.trim();
+    if (!val) return;
+    localStorage.setItem('jj_gh_token', val);
+    document.getElementById('tokenInput').value = '';
+    document.getElementById('tokenStatus').style.display = 'inline-block';
+  }
+  window.addEventListener('load', () => {
+    if (localStorage.getItem('jj_gh_token')) {
+      document.getElementById('tokenStatus').style.display = 'inline-block';
+    }
+  });
+
+  // Drag & drop
+  const dz = document.getElementById('dropZone');
+  dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('dragover'); });
+  dz.addEventListener('dragleave', () => dz.classList.remove('dragover'));
+  dz.addEventListener('drop', e => {
+    e.preventDefault();
+    dz.classList.remove('dragover');
+    handleFiles(e.dataTransfer.files);
+  });
+
+  function handleFiles(newFiles) {
+    for (const f of newFiles) {
+      if (!f.type.startsWith('image/')) continue;
+      files.push(f);
+      renderItem(f, files.length - 1);
+    }
+    document.getElementById('uploadBtn').disabled = files.length === 0;
+  }
+
+  function renderItem(file, idx) {
+    const list = document.getElementById('uploadList');
+    const url = URL.createObjectURL(file);
+    const size = file.size < 1024 * 1024
+      ? (file.size / 1024).toFixed(0) + ' KB'
+      : (file.size / 1024 / 1024).toFixed(1) + ' MB';
+    const div = document.createElement('div');
+    div.className = 'upload-item';
+    div.id = `item-${idx}`;
+    div.innerHTML = `
+      <img class="upload-thumb" src="${url}" alt="" />
+      <div class="upload-info">
+        <div class="upload-name">${file.name}</div>
+        <div class="upload-size">${size}</div>
+      </div>
+      <span class="upload-status pending" id="status-${idx}">Pending</span>
+    `;
+    list.appendChild(div);
+  }
+
+  function setStatus(idx, text, cls) {
+    const el = document.getElementById(`status-${idx}`);
+    el.textContent = text;
+    el.className = `upload-status ${cls}`;
+  }
+
+  async function uploadAll() {
+    const token = localStorage.getItem('jj_gh_token');
+    if (!token) { alert('Please save your GitHub token in Step 1 first.'); return; }
+    document.getElementById('uploadBtn').disabled = true;
+
+    const resultsEl = document.getElementById('results');
+    resultsEl.innerHTML = '';
+
+    for (let i = 0; i < files.length; i++) {
+      setStatus(i, 'Uploading…', 'uploading');
+      try {
+        const path = await uploadFile(files[i], token);
+        setStatus(i, '✓ Done', 'done');
+        addResult(files[i].name, path);
+      } catch (e) {
+        setStatus(i, '✗ Error', 'error');
+        console.error(e);
+      }
+    }
+    files = [];
+    document.getElementById('uploadBtn').disabled = false;
+  }
+
+  async function uploadFile(file, token) {
+    const content = await toBase64(file);
+    const safeName = file.name.replace(/\s+/g, '-').toLowerCase();
+    const path = `images/${safeName}`;
+
+    // Check if file exists (to get SHA for update)
+    let sha;
+    try {
+      const check = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (check.ok) { const j = await check.json(); sha = j.sha; }
+    } catch (_) {}
+
+    const body = { message: `upload: ${safeName}`, content, branch: BRANCH };
+    if (sha) body.sha = sha;
+
+    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    if (!res.ok) throw new Error(await res.text());
+    return path;
+  }
+
+  function toBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function addResult(name, path) {
+    const resultsEl = document.getElementById('results');
+    const safeName = name.replace(/\s+/g, '-').toLowerCase();
+    const snippet = `<img src="../${path}" alt="" />`;
+    const div = document.createElement('div');
+    div.className = 'result-item';
+    div.innerHTML = `
+      <div class="result-label">✓ ${safeName} — uploaded</div>
+      <button class="result-code" onclick="copySnippet(this, \`${snippet.replace(/`/g, '\\`')}\`)">${snippet}</button>
+      <p class="copy-hint">Click to copy the HTML snippet → paste it into your page</p>
+    `;
+    resultsEl.appendChild(div);
+  }
+
+  function copySnippet(btn, text) {
+    navigator.clipboard.writeText(text);
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = orig, 1500);
+  }
+</script>
+</body>
+</html>
