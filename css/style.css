@@ -915,6 +915,8 @@ button {
   right: 1.2rem;
   opacity: 0;
   transition: opacity 0.4s ease;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .piece-card:hover .piece-card__overlay {
